@@ -48,4 +48,18 @@ public class Enemy : MonoBehaviour
         CancelInvoke();
         Invoke("Think", 5);
     }
+
+    public void OnDamaged()
+    {
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+        spriteRenderer.flipY = true;
+        capsuleCollider.enabled = false;
+        rigid.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
+        Invoke("DeActive", 5);
+    }
+
+    void DeActive()
+    {
+        gameObject.SetActive(false);
+    }
 }
