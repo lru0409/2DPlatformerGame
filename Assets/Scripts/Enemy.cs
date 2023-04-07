@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        Invoke("Think", 5);
     }
 
     void Update()
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
         nextMove = Random.Range(-1, 2);
         animator.SetInteger("WalkSpeed", nextMove);
         if (nextMove != 0)
-            spriteRenderer.flipX = nextMove == 1; // 이게 왜 되지?
+            spriteRenderer.flipX = nextMove == 1;
         Invoke("Think",  Random.Range(2f, 5f));
     }
 
