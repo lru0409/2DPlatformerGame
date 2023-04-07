@@ -6,12 +6,15 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    Animator animator;
+    CapsuleCollider2D capsuleCollider;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
@@ -32,5 +35,27 @@ public class Player : MonoBehaviour
         
         if (h != 0)
             spriteRenderer.flipX = rigid.velocity.x < 0;
+        
+        if (h == 0)
+            animator.SetBool("isWalking", false);
+        else
+            animator.SetBool("isWalking", true);
+        
+        // ----- Jump -----
+
+        if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping")) {
+            rigid.AddForce(Vector2.up * 17f, ForceMode2D.Impulse);
+            animator.SetBool("isJumping", true);
+        }
+
+        if (rigid.velocity.y < 0) {
+            Debug.DrawRay(rigid.position, Vector3.down, Color.green);
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            if (rayHit.collider != null) {
+                if (rayHit.distance > 0.5f)
+                    animator.SetBool("isJumping", false);
+            }
+        }
+
     }
 }
