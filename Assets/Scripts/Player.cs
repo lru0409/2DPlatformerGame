@@ -97,10 +97,10 @@ public class Player : MonoBehaviour
 
         // To Bounce
         isBounce = true;
-        Debug.Log("Player: " + transform.position.x);
-        Debug.Log("Enemy: " + enemyPosition.x);
+        // Debug.Log("Player: " + transform.position.x);
+        // Debug.Log("Enemy: " + enemyPosition.x);
         int direction = transform.position.x - enemyPosition.x > 0 ? 1 : -1;
-        Debug.Log("direction: " + direction);
+        // Debug.Log("direction: " + direction);
         rigid.AddForce(new Vector2(direction*5, 10), ForceMode2D.Impulse);
 
         // Animation
