@@ -24,19 +24,20 @@ public class Player : MonoBehaviour
         // ----- Walk -----
 
         float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        if (!isBounce)
+            rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
-        if (h == 0)
+        if (h == 0 && !isBounce)
             rigid.velocity = new Vector2(0, rigid.velocity.y);
         
         float maxSpeed = 4.5f;
-        if (rigid.velocity.x > maxSpeed)
+        if (rigid.velocity.x > maxSpeed && !isBounce)
             rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
-        else if (rigid.velocity.x < maxSpeed*(-1))
+        else if (rigid.velocity.x < maxSpeed*(-1) && !isBounce)
             rigid.velocity = new Vector2(maxSpeed*(-1), rigid.velocity.y);
         
         if (h != 0)
-            spriteRenderer.flipX = rigid.velocity.x < 0;
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
         
         if (h == 0)
             animator.SetBool("isWalking", false);
@@ -52,18 +53,20 @@ public class Player : MonoBehaviour
         }
 
         if (rigid.velocity.y < 0) {
-            Debug.DrawRay(rigid.position, Vector3.down, Color.green);
             RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
             if (rayHit.collider != null) {
-                if (rayHit.distance > 0.5f)
+                if (rayHit.distance > 0.5f) {
                     animator.SetBool("isJumping", false);
+                    if (isBounce)
+                        isBounce = false;
+                }
             }
         }
     }
 
     // ----- Interact With Enemy -----
 
-    void OnCollisionEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
@@ -74,11 +77,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnAttack(Transform enemy)
+    void OnAttack(Transform enemyTransform)
     {
         // Point
         rigid.AddForce(Vector2.up * 8, ForceMode2D.Impulse);
-        EnemyMove enemyMove = enemy.GetComponent<EnemyMove>();
+        Enemy enemy = enemyTransform.GetComponent<Enemy>();
         enemy.OnDamaged();
         // Sound
     }
@@ -88,13 +91,16 @@ public class Player : MonoBehaviour
         // Health Down
 
         // Immortal Active
-        gameObject.layer = 8; // PlayerDamaged
+        gameObject.layer = 7; // PlayerDamaged
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
         Invoke("OffDamaged", 2);
 
         // To Bounce
         isBounce = true;
+        Debug.Log("Player: " + transform.position.x);
+        Debug.Log("Enemy: " + enemyPosition.x);
         int direction = transform.position.x - enemyPosition.x > 0 ? 1 : -1;
+        Debug.Log("direction: " + direction);
         rigid.AddForce(new Vector2(direction*5, 10), ForceMode2D.Impulse);
 
         // Animation
@@ -105,7 +111,7 @@ public class Player : MonoBehaviour
 
     void OffDamaged()
     {
-        gameObject.layer = 7; // Player
+        gameObject.layer = 6; // Player
         spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 }
