@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
     void OnAttack(Transform enemyTransform)
     {
-        // Point
+        gameManager.stagePoint += 100;
         rigid.AddForce(Vector2.up * 8, ForceMode2D.Impulse);
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
         enemy.OnDamaged();
