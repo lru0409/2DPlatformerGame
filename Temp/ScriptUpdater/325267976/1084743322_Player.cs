@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        if (capsuleCollider == null)
-            Debug.Log("왤깡");
     }
 
     void Update()
@@ -101,10 +99,10 @@ public class Player : MonoBehaviour
 
         // To Bounce
         isBounce = true;
-        Debug.Log("Player: " + transform.position.x);
-        Debug.Log("Enemy: " + enemyPosition.x);
+        // Debug.Log("Player: " + transform.position.x);
+        // Debug.Log("Enemy: " + enemyPosition.x);
         int direction = transform.position.x - enemyPosition.x > 0 ? 1 : -1;
-        Debug.Log("direction: " + direction);
+        // Debug.Log("direction: " + direction);
         rigid.AddForce(new Vector2(direction*5, 10), ForceMode2D.Impulse);
 
         // Animation
@@ -131,7 +129,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Item") {
+        if (GetComponent<Collider>().gameObject.tag == "Item") {
             CollectCoin(collision.gameObject);
         } else if (collision.gameObject.tag == "Finish") {
             gameManager.NextStage();
