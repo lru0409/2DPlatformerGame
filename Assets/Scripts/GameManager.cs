@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     void PlayerReposition()
     {
         player.transform.position = new Vector3(0, 0, 0);
-        //Player.VelocityZero();
     }
 
     public void Restart()
