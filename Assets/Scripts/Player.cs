@@ -73,6 +73,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetActive(bool active)
+    {
+        gameObject.SetActive(active);
+    }
+
+    public void Reposition()
+    {
+        gameObject.transform.position = new Vector3(0, 0, 0);
+    }
+
     // ----- Interact With Enemy -----
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -130,14 +140,14 @@ public class Player : MonoBehaviour
         PlaySound("DIE");
     }
 
-    // ----- Coin Trigger -----
+    // ----- Coin, Finish Trigger -----
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Item") {
             CollectCoin(collision.gameObject);
         } else if (collision.gameObject.tag == "Finish") {
-            gameManager.NextStage();
+            gameManager.ClearStage();
             PlaySound("FINISH");
         }
     }

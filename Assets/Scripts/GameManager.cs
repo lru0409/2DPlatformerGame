@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,37 +13,44 @@ public class GameManager : MonoBehaviour
     public int hp = 3;
     public Player player;
     public GameObject[] Stages;
+    public GameObject StageMap;
 
     public Image[] UIHp;
     public Text UIPoint;
     public Text UIStage;
     public GameObject UIRestartButton;
 
+    public bool[] stageOpened = new bool[12]{true, false, false, false, false, false, false, false, false, false, false, false};
+
     void Update()
     {
         UIPoint.text = (totalPoint + stagePoint).ToString();
     }
 
-    public void NextStage()
+    public void ClearStage()
     {
         // Calculate Point
         totalPoint += stagePoint;
         stagePoint = 0;
 
-        // Change Stage
-        if (stageIndex < Stages.Length - 1) {
-            Stages[stageIndex].SetActive(false);
+        Time.timeScale = 0;
+        Stages[stageIndex].SetActive(false);
+        if (stageIndex < Stages.Length - 1)
+        {
             stageIndex++;
-            Stages[stageIndex].SetActive(true);
-            PlayerReposition();
-            UIStage.text = "STAGE " + (stageIndex + 1);
-        } else { // Game Clear
-            Time.timeScale = 0;
-            Debug.Log("Game Clear");
-            Text buttonText = UIRestartButton.GetComponentInChildren<Text>();
-            buttonText.text = "CLEAR";
-            UIRestartButton.SetActive(true);
+            stageOpened[stageIndex] = true;
+            // 스테이지 클리어 화면 활성화 - 스테이지 맵으로, 다음 스테이지로
+        } else {
+            Debug.Log("Clear All Stage");
         }
+        StageMap.SetActive(true); // 임시
+    }
+
+    public void GoToStage(int stageNumber)
+    {
+        Stages[stageNumber - 1].SetActive(true);
+        player.Reposition();
+        Time.timeScale = 1;
     }
 
     public void HpDown()
@@ -63,13 +71,8 @@ public class GameManager : MonoBehaviour
         if (collision.gameObject.tag == "Player") {
             HpDown();
             if (hp > 0)
-                PlayerReposition();
+                player.Reposition();
         }
-    }
-
-    void PlayerReposition()
-    {
-        player.transform.position = new Vector3(0, 0, 0);
     }
 
     // ----- Button Click Event -----
