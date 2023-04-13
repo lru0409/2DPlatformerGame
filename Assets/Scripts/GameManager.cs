@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public Text UIStage;
 
     // StageEventUI
+    public Text UIEventTitle;
+    public Button UIEventPlayButton;
 
     public bool[] stageOpened = new bool[12]{true, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -35,26 +37,32 @@ public class GameManager : MonoBehaviour
 
     public void ClearStage()
     {
-        // Calculate Point
         totalPoint += stagePoint;
         stagePoint = 0;
 
         Time.timeScale = 0;
         if (stageIndex < Stages.Length - 1) {
+            UIEventTitle.text = "Stage Clear!";
+            Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
+            playButtonText.text = "다음 스테이지로";
             StageEventUI.SetActive(true);
         } else {
             Debug.Log("Clear All Stage");
         }
     }
 
-    public void GoToNextStage()
+    public void GoToPlayStage()
     {
-        Stages[stageIndex].SetActive(false);
-        StageEventUI.SetActive(false);
-        GameUI.SetActive(false);
+        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
 
-        stageIndex++;
-        stageOpened[stageIndex] = true;
+        StageEventUI.SetActive(false);
+        if (playButtonText.text == "다음 스테이지로") {
+            Stages[stageIndex].SetActive(false);
+            stageIndex++;
+            stageOpened[stageIndex] = true;
+        } else if (playButtonText.text == "다시 시도하기") {
+            // 코인이랑 몬스터 어떻게 되돌리지!!
+        }
         GoToStage(stageIndex + 1);
     }
 
@@ -88,7 +96,11 @@ public class GameManager : MonoBehaviour
         if (hp == 0) {
             player.OnDie();
             Debug.Log("Player Die");
-            //UIRestartButton.SetActive(true);
+            
+            UIEventTitle.text = "Fail to Clear";
+            Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
+            playButtonText.text = "다시 시도하기";
+            StageEventUI.SetActive(true);
         }
     }
 
