@@ -72,7 +72,9 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, 0);
     }
 
-    public void Restart()
+    // ----- Button Click Event -----
+
+    public void RestartClicked()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
