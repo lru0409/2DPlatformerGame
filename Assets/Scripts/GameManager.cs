@@ -14,11 +14,15 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject[] Stages;
     public GameObject StageMap;
+    public GameObject GameUI;
+    public GameObject StageEventUI; // 클리어, 클리어 실패, 일시정지
 
+    // GameUI
     public Image[] UIHp;
     public Text UIPoint;
     public Text UIStage;
-    public GameObject UIRestartButton;
+
+    // StageEventUI
 
     public bool[] stageOpened = new bool[12]{true, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour
         UIPoint.text = (totalPoint + stagePoint).ToString();
     }
 
+    // ----- Clear Event -----
+
     public void ClearStage()
     {
         // Calculate Point
@@ -34,21 +40,41 @@ public class GameManager : MonoBehaviour
         stagePoint = 0;
 
         Time.timeScale = 0;
-        Stages[stageIndex].SetActive(false);
-        if (stageIndex < Stages.Length - 1)
-        {
-            stageIndex++;
-            stageOpened[stageIndex] = true;
-            // 스테이지 클리어 화면 활성화 - 스테이지 맵으로, 다음 스테이지로
+        if (stageIndex < Stages.Length - 1) {
+            StageEventUI.SetActive(true);
         } else {
             Debug.Log("Clear All Stage");
         }
-        StageMap.SetActive(true); // 임시
     }
+
+    public void GoToNextStage()
+    {
+        Stages[stageIndex].SetActive(false);
+        StageEventUI.SetActive(false);
+        GameUI.SetActive(false);
+
+        stageIndex++;
+        stageOpened[stageIndex] = true;
+        GoToStage(stageIndex + 1);
+    }
+
+    public void GoToStageMap()
+    {
+        Stages[stageIndex].SetActive(false);
+        StageEventUI.SetActive(false);
+        GameUI.SetActive(false);
+
+        stageIndex++;
+        stageOpened[stageIndex] = true;
+        StageMap.SetActive(true);
+    }
+
+    // ----------
 
     public void GoToStage(int stageNumber)
     {
         Stages[stageNumber - 1].SetActive(true);
+        GameUI.SetActive(true);
         player.Reposition();
         Time.timeScale = 1;
     }
@@ -62,7 +88,7 @@ public class GameManager : MonoBehaviour
         if (hp == 0) {
             player.OnDie();
             Debug.Log("Player Die");
-            UIRestartButton.SetActive(true);
+            //UIRestartButton.SetActive(true);
         }
     }
 
@@ -77,9 +103,9 @@ public class GameManager : MonoBehaviour
 
     // ----- Button Click Event -----
 
-    public void RestartClicked()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
-    }
+    // public void RestartClicked()
+    // {
+    //     Time.timeScale = 1;
+    //     SceneManager.LoadScene(0);
+    // }
 }
