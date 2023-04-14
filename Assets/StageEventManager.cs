@@ -9,6 +9,7 @@ public class StageEventManager : MonoBehaviour
     public Text UIEventTitle;
     public Button UIEventPlayButton;
     public GameManager gameManager;
+    public StageMapManager stageMapManager;
     public GameObject stageMap;
     public GameObject gameUI;
 
@@ -19,7 +20,7 @@ public class StageEventManager : MonoBehaviour
         UIEventTitle.text = title;
         if (title == "Stage Clear!") {
             playButtonText.text = "다음 스테이지로";
-        } else { // Fail to Clear
+        } else { // title = "Fail to Clear"
             playButtonText.text = "다시 시도하기";
         }
         StageEventUI.SetActive(true);
@@ -27,29 +28,29 @@ public class StageEventManager : MonoBehaviour
 
     public void GoToPlayStage()
     {
-        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-
         StageEventUI.SetActive(false);
+        gameManager.stages[gameManager.stageIndex].SetActive(false);
+
+        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로") {
-            gameManager.stages[gameManager.stageIndex].SetActive(false);
-            gameManager.stageIndex++;
-            gameManager.stageIndex++;
-            gameManager.stageOpened[gameManager.stageIndex] = true;
+            gameManager.UpdateDataToNextStage();
         } else if (playButtonText.text == "다시 시도하기") {
-            gameManager.stages[gameManager.stageIndex].SetActive(false);
+            // 코인이랑 몬스터 돌려놔야 하는데..
         }
         gameManager.GoToStage(gameManager.stageIndex + 1);
     }
 
     public void GoToStageMap()
     {
-        gameManager.stages[gameManager.stageIndex].SetActive(false);
         StageEventUI.SetActive(false);
+        gameManager.stages[gameManager.stageIndex].SetActive(false);
         gameUI.SetActive(false);
 
-        gameManager.stageIndex++;
-        gameManager.stageOpened[gameManager.stageIndex] = true;
-        stageMap.SetActive(true);
+        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
+        if (playButtonText.text == "다음 스테이지로") {
+            gameManager.UpdateDataToNextStage();
+        }
+        stageMapManager.DisplayStageMap();
     }
 
 }

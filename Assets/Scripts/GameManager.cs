@@ -51,6 +51,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateDataToNextStage()
+    {
+        stageIndex++;
+        stageOpened[stageIndex] = true;
+    }
+
     // ----------
 
     public void GoToStage(int stageNumber)
