@@ -7,117 +7,92 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int totalPoint;
     public int stagePoint;
     public int stageIndex;
     public int hp = 3;
     public Player player;
-    public GameObject[] Stages;
-    public GameObject StageMap;
-    public GameObject GameUI;
-    public GameObject StageEventUI; // 클리어, 클리어 실패, 일시정지
+    public GameObject[] stages;
+    public GameObject stageMap;
+    public GameObject gameUI;
+    public StageEventManager stageEventManager;
 
     // GameUI
     public Image[] UIHp;
     public Text UIPoint;
     public Text UIStage;
 
-    // StageEventUI
-    public Text UIEventTitle;
-    public Button UIEventPlayButton;
-
     public bool[] stageOpened = new bool[12]{true, false, false, false, false, false, false, false, false, false, false, false};
 
     void Update()
     {
-        UIPoint.text = (totalPoint + stagePoint).ToString();
+        UIPoint.text = stagePoint.ToString();
     }
 
-    // ----- Clear Event -----
+    // ----- Stage Event -----
 
     public void ClearStage()
     {
-        totalPoint += stagePoint;
-        stagePoint = 0;
-
         Time.timeScale = 0;
-        if (stageIndex < Stages.Length - 1) {
-            UIEventTitle.text = "Stage Clear!";
-            Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-            playButtonText.text = "다음 스테이지로";
-            StageEventUI.SetActive(true);
+        if (stageIndex < stages.Length - 1) {
+            stageEventManager.DisplayEventUI("Stage Clear!");
         } else {
             Debug.Log("Clear All Stage");
         }
     }
 
-    public void GoToPlayStage()
+    public void HpDown()
     {
-        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-
-        StageEventUI.SetActive(false);
-        if (playButtonText.text == "다음 스테이지로") {
-            Stages[stageIndex].SetActive(false);
-            stageIndex++;
-            stageOpened[stageIndex] = true;
-        } else if (playButtonText.text == "다시 시도하기") {
-            // 코인이랑 몬스터 어떻게 되돌리지!!
+        if (hp > 0) {
+            setHP(hp - 1);
         }
-        GoToStage(stageIndex + 1);
-    }
-
-    public void GoToStageMap()
-    {
-        Stages[stageIndex].SetActive(false);
-        StageEventUI.SetActive(false);
-        GameUI.SetActive(false);
-
-        stageIndex++;
-        stageOpened[stageIndex] = true;
-        StageMap.SetActive(true);
+        if (hp == 0) {
+            player.OnDie();
+            stageEventManager.DisplayEventUI("Fail to Clear");
+        }
     }
 
     // ----------
 
     public void GoToStage(int stageNumber)
     {
-        Stages[stageNumber - 1].SetActive(true);
-        GameUI.SetActive(true);
-        player.Reposition();
-        Time.timeScale = 1;
-    }
+        stages[stageNumber - 1].SetActive(true);
+        gameUI.SetActive(true);
 
-    public void HpDown()
-    {
-        if (hp > 0) {
-            hp--;
-            UIHp[hp].color = new Color(1, 1, 1, 0.4f);
-        }
-        if (hp == 0) {
-            player.OnDie();
-            Debug.Log("Player Die");
-            
-            UIEventTitle.text = "Fail to Clear";
-            Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-            playButtonText.text = "다시 시도하기";
-            StageEventUI.SetActive(true);
-        }
+        // player setting
+        player.SetActive(true);
+        player.OffDie();
+        player.transform.position = new Vector3(0, -0.5450001f, 0);
+
+        stagePoint = 0;
+        setHP(3);
+        Time.timeScale = 1;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") {
             HpDown();
-            if (hp > 0)
-                player.Reposition();
+            if (hp > 0) {
+                player.spriteRenderer.flipX = false;
+                player.transform.position = new Vector3(0, 0, 0);
+            }
         }
     }
 
-    // ----- Button Click Event -----
+    void setHP(int newHP)
+    {
+        hp = newHP;
 
-    // public void RestartClicked()
-    // {
-    //     Time.timeScale = 1;
-    //     SceneManager.LoadScene(0);
-    // }
+        UIHp[0].color = new Color(1, 1, 1, 1);
+        UIHp[1].color = new Color(1, 1, 1, 1);
+        UIHp[2].color = new Color(1, 1, 1, 1);
+
+        if (hp < 3)
+            UIHp[2].color = new Color(1, 1, 1, 0.4f);
+        if (hp < 2)
+            UIHp[1].color = new Color(1, 1, 1, 0.4f);
+        if (hp < 1)
+            UIHp[0].color = new Color(1, 1, 1, 0.4f);
+    }
+
 }

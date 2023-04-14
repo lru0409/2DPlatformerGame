@@ -14,9 +14,9 @@ public class Player : MonoBehaviour
     public AudioClip audioFinish;
 
     Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     Animator animator;
-    CapsuleCollider2D capsuleCollider;
+    public CapsuleCollider2D capsuleCollider;
     AudioSource audioSource;
 
     private bool isBounce = false;
@@ -78,11 +78,6 @@ public class Player : MonoBehaviour
         gameObject.SetActive(active);
     }
 
-    public void Reposition()
-    {
-        gameObject.transform.position = new Vector3(0, 0, 0);
-    }
-
     // ----- Interact With Enemy -----
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -138,6 +133,17 @@ public class Player : MonoBehaviour
         capsuleCollider.enabled = false;
         rigid.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
         PlaySound("DIE");
+    }
+
+    public void OffDie() // GameManager - GoToStage
+    {
+        if (spriteRenderer) {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+            spriteRenderer.flipY = false;
+            spriteRenderer.flipX = false;
+        }
+        if (capsuleCollider)
+            capsuleCollider.enabled = true;
     }
 
     // ----- Coin, Finish Trigger -----
