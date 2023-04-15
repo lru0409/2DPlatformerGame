@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548a77b3c664544b1b0ce3782997282b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextMove: 0
 --- !u!50 &271987388
 Rigidbody2D:
   serializedVersion: 4
@@ -469,8 +470,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageEventManager, Assembly-CSharp
+      - m_Target: {fileID: 1926780083}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: GoToPlayStage
         m_Mode: 1
         m_Arguments:
@@ -1834,6 +1835,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529b8c952d3e1462fa6b551f8f4c220d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 1926780083}
+  audioJump: {fileID: 0}
+  audioAttack: {fileID: 0}
+  audioDamaged: {fileID: 0}
+  audioItem: {fileID: 0}
+  audioDie: {fileID: 0}
+  audioFinish: {fileID: 0}
 --- !u!95 &1166147941
 Animator:
   serializedVersion: 5
@@ -2527,8 +2535,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageEventManager, Assembly-CSharp
+      - m_Target: {fileID: 1926780083}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: GoToStageMap
         m_Mode: 1
         m_Arguments:
@@ -2922,6 +2930,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef4fad57714d479ca4dcb7dc506c41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1166147940}
+  gameManagerObject: {fileID: 0}
+  gameManager: {fileID: 0}
+  point: 0
+  hp: 3
+  UIHp:
+  - {fileID: 787266290}
+  - {fileID: 1119442019}
+  - {fileID: 2119060419}
+  UIPoint: {fileID: 953150899}
+  UIStage: {fileID: 1610712843}
+  StageEventUI: {fileID: 213329658}
+  UIEventTitle: {fileID: 2098507850}
+  UIEventPlayButton: {fileID: 412768363}
 --- !u!4 &1926780084
 Transform:
   m_ObjectHideFlags: 0

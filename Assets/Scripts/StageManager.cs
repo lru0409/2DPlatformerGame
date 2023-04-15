@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
     public Player player;
-    public GameManager gameManager;
+    // public GameObject gameManagerObject;
+    // public GameManager gameManager;
 
     public int point;
     public int hp = 3;
 
     // GameUI
-    public GameObject gameUI;
     public Image[] UIHp;
     public Text UIPoint;
     public Text UIStage;
@@ -23,6 +25,8 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        // gameManagerObject = GameObject.Find("GameManager");
+        // gameManager = gameManagerObject.GetComponent<GameManager>();
         SetHp(3);
     }
 
@@ -34,7 +38,7 @@ public class StageManager : MonoBehaviour
     public void ClearStage()
     {
         Time.timeScale = 0;
-        if (gameManager.stageIndex < stages.Length - 1) {
+        if (GameManager.instance.stageIndex < 11) {
             DisplayEventUI("Stage Clear!");
         } else {
             Debug.Log("Clear All Stage");
@@ -44,7 +48,7 @@ public class StageManager : MonoBehaviour
     public void HpDown()
     {
         if (hp > 0) {
-            setHP(hp - 1);
+            SetHp(hp - 1);
         }
         if (hp == 0) {
             player.OnDie();
@@ -99,8 +103,8 @@ public class StageManager : MonoBehaviour
 
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로")
-            gameManager.UpdateDataToNextStage();
-        SceneManager.LoadScene("Stage" + (gameManager.stageIndex + 1) + "Scene");
+            GameManager.instance.UpdateDataToNextStage();
+        SceneManager.LoadScene("Stage" + (GameManager.instance.stageIndex + 1) + "Scene");
     }
 
     public void GoToStageMap()
@@ -108,10 +112,10 @@ public class StageManager : MonoBehaviour
         StageEventUI.SetActive(false);
 
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-        if (playButtonText.text == "다음 스테이지로")
-            gameManager.UpdateDataToNextStage();
+        if (playButtonText.text == "다음 스테이지로") {
+            GameManager.instance.UpdateDataToNextStage();
+        }
         SceneManager.LoadScene("StageMapScene");
-        gameManager.DisplayStageMap(); // 이게 될까
     }
 
 }

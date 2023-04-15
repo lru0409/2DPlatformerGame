@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public GameManager gameManager;
 	public StageManager stageManager;
 
     public AudioClip audioJump;
@@ -14,8 +13,8 @@ public class Player : MonoBehaviour
     public AudioClip audioDie;
     public AudioClip audioFinish;
 
-    public SpriteRenderer spriteRenderer;
-    public CapsuleCollider2D capsuleCollider;
+    SpriteRenderer spriteRenderer;
+    CapsuleCollider2D capsuleCollider;
     Rigidbody2D rigid;
     Animator animator;
     AudioSource audioSource;
