@@ -25,6 +25,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         SetHp(3);
     }
 
@@ -83,18 +84,16 @@ public class StageManager : MonoBehaviour
         PauseUI.SetActive(true);
     }
 
-    public void ContinuePlay()
+    public void ContinuePlay() // 이어서 하기
     {
         Time.timeScale = 1;
         PauseUI.SetActive(false);
     }
 
-    public void Restart()
+    public void Restart() // 다시 시작하기
     {
-        SceneManager.LoadScene("Stage" + GameManager.instance.stageIndex + "Scene");
+        SceneManager.LoadScene("Stage" + (GameManager.instance.stageIndex + 1) + "Scene");
     }
-
-    // 이어서하기, 다시 시작하기, 스테이지 맵으로
 
     // ----- Stage Event -----
 
@@ -111,7 +110,7 @@ public class StageManager : MonoBehaviour
         EventUI.SetActive(true);
     }
 
-    public void GoToPlayStage()
+    public void GoToPlayStage() // 다음 스테이지로 or 다시 시도하기
     {
         EventUI.SetActive(false);
 
@@ -121,17 +120,16 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene("Stage" + (GameManager.instance.stageIndex + 1) + "Scene");
     }
 
-    public void GoToStageMap()
+    public void GoToStageMap() // 스테이지 맵으로
     {
-        if (EventUI.activeSelf == true)
-        {
+        if (EventUI.activeSelf == true) {
             Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
             if (playButtonText.text == "다음 스테이지로") {
                 GameManager.instance.UpdateDataToNextStage();
                 EventUI.SetActive(false);
-            } else {  // Pause UI
-                PauseUI.SetActive(false);
             }
+        } else {  // Pause UI
+            PauseUI.SetActive(false);
         }
         SceneManager.LoadScene("StageMapScene");
     }

@@ -209,7 +209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1926780083}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: GoToPlayStage
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1329,7 +1329,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 502580379}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1926780083}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: DisplayPauseUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &502580379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,7 +1971,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1926780083}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: GoToPlayStage
+        m_MethodName: ContinuePlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2512,7 +2524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1345246096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3593,6 +3605,7 @@ MonoBehaviour:
   EventUI: {fileID: 213329658}
   UIEventTitle: {fileID: 2098507850}
   UIEventPlayButton: {fileID: 412768363}
+  PauseUI: {fileID: 1345246095}
 --- !u!4 &1926780084
 Transform:
   m_ObjectHideFlags: 0
