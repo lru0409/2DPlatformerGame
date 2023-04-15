@@ -9,9 +9,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-
     public int stageIndex = 0;
     public bool[] stageOpened = {true, false, false, false, false, false, false, false, false, false, false, false};
+
+    public StageMapManager stageMapManager;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(this.gameObject);
         }
+        stageMapManager.gameObject.SetActive(true);
     }
 
     public void UpdateDataToNextStage()

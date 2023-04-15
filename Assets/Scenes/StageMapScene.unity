@@ -290,8 +290,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -747,8 +747,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -828,19 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 0
   stageOpened: 010000000000000000000000
-  lockedImages:
-  - {fileID: 2047395782}
-  - {fileID: 672741740}
-  - {fileID: 636737944}
-  - {fileID: 1886647474}
-  - {fileID: 403955460}
-  - {fileID: 1812548388}
-  - {fileID: 2054255244}
-  - {fileID: 774994685}
-  - {fileID: 707890994}
-  - {fileID: 2080320521}
-  - {fileID: 1177946210}
-  - {fileID: 251869016}
+  stageMapManager: {fileID: 865429323}
 --- !u!4 &366080758
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,8 +1559,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -1850,8 +1838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -1919,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &865429319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2026,6 +2014,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f68b3c89f15d40468eabede0e2fd4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedImages:
+  - {fileID: 2047395782}
+  - {fileID: 672741740}
+  - {fileID: 636737944}
+  - {fileID: 1886647474}
+  - {fileID: 403955460}
+  - {fileID: 1812548388}
+  - {fileID: 2054255244}
+  - {fileID: 774994685}
+  - {fileID: 707890994}
+  - {fileID: 2080320521}
+  - {fileID: 1177946210}
+  - {fileID: 251869016}
 --- !u!1 &1046859633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,8 +2194,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -2404,8 +2405,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -2539,8 +2540,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -2754,8 +2755,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -2969,8 +2970,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -3104,8 +3105,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -3321,8 +3322,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
@@ -3456,8 +3457,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366080757}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 865429323}
+        m_TargetAssemblyTypeName: StageMapManager, Assembly-CSharp
         m_MethodName: StageClicked
         m_Mode: 3
         m_Arguments:
