@@ -7,32 +7,22 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public Player player;
-    // public GameObject gameManagerObject;
-    // public GameManager gameManager;
 
     public int point;
     public int hp = 3;
 
     // GameUI
     public Image[] UIHp;
-    public Text UIPoint;
     public Text UIStage;
 
     // EventUI
-    public GameObject StageEventUI;
+    public GameObject EventUI;
     public Text UIEventTitle;
     public Button UIEventPlayButton;
 
     void Start()
     {
-        // gameManagerObject = GameObject.Find("GameManager");
-        // gameManager = gameManagerObject.GetComponent<GameManager>();
         SetHp(3);
-    }
-
-    void Update()
-    {
-        UIPoint.text = point.ToString(); // 이거 어떻게 좀 바꿔보자
     }
 
     public void ClearStage()
@@ -82,7 +72,9 @@ public class StageManager : MonoBehaviour
             UIHp[0].color = new Color(1, 1, 1, 0.4f);
     }
 
-    // ----- EventUI -----
+    // ----- Stage Pause -----
+
+    // ----- Stage Event -----
 
     public void DisplayEventUI(string title)
     {
@@ -94,12 +86,12 @@ public class StageManager : MonoBehaviour
         } else { // title = "Fail to Clear"
             playButtonText.text = "다시 시도하기";
         }
-        StageEventUI.SetActive(true);
+        EventUI.SetActive(true);
     }
 
     public void GoToPlayStage()
     {
-        StageEventUI.SetActive(false);
+        EventUI.SetActive(false);
 
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로")
@@ -109,7 +101,7 @@ public class StageManager : MonoBehaviour
 
     public void GoToStageMap()
     {
-        StageEventUI.SetActive(false);
+        EventUI.SetActive(false);
 
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로") {
