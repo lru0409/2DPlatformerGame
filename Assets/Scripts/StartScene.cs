@@ -8,7 +8,7 @@ public class StartScene : MonoBehaviour
 
     public void StartClicked()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("StageMapScene");
     }
 
 }
