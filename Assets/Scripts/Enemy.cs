@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
         // Platform Check
-        Vector2 frontVec = new Vector2(rigid.position.x + nextMove*0.5f, rigid.position.y);
+        Vector2 frontVec = new Vector2(rigid.position.x + nextMove*0.2f, rigid.position.y);
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
         if (rayHit.collider == null)
             Turn();
