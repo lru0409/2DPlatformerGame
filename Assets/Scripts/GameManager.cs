@@ -9,12 +9,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject stageMap;
+    public int stageIndex;
     public bool[] stageOpened = {true, false, false, false, false, false, false, false, false, false, false, false};
     public Image[] lockedImages;
 
     void Start()
     {
+        stageIndex = 0;
         DisplayStageMap();
+    }
+
+    public void UpdateDataToNextStage()
+    {
+        stageIndex++;
+        stageOpened[stageIndex] = true;
     }
 
     public void DisplayStageMap()
