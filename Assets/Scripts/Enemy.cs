@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        Invoke("Think", 5);
+        Think();
     }
 
     void Update()
