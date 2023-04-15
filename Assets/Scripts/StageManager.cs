@@ -20,6 +20,9 @@ public class StageManager : MonoBehaviour
     public Text UIEventTitle;
     public Button UIEventPlayButton;
 
+    // PauseUI
+    public GameObject PauseUI;
+
     void Start()
     {
         SetHp(3);
@@ -74,6 +77,25 @@ public class StageManager : MonoBehaviour
 
     // ----- Stage Pause -----
 
+    public void DisplayPauseUI()
+    {
+        Time.timeScale = 0;
+        PauseUI.SetActive(true);
+    }
+
+    public void ContinuePlay()
+    {
+        Time.timeScale = 1;
+        PauseUI.SetActive(false);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Stage" + GameManager.instance.stageIndex + "Scene");
+    }
+
+    // 이어서하기, 다시 시작하기, 스테이지 맵으로
+
     // ----- Stage Event -----
 
     public void DisplayEventUI(string title)
@@ -101,11 +123,15 @@ public class StageManager : MonoBehaviour
 
     public void GoToStageMap()
     {
-        EventUI.SetActive(false);
-
-        Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
-        if (playButtonText.text == "다음 스테이지로") {
-            GameManager.instance.UpdateDataToNextStage();
+        if (EventUI.activeSelf == true)
+        {
+            Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
+            if (playButtonText.text == "다음 스테이지로") {
+                GameManager.instance.UpdateDataToNextStage();
+                EventUI.SetActive(false);
+            } else {  // Pause UI
+                PauseUI.SetActive(false);
+            }
         }
         SceneManager.LoadScene("StageMapScene");
     }
