@@ -25,8 +25,9 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1;
         SetHp(3);
+        UIStage.text = "STAGE " + (GameManager.instance.stageIndex + 1);
+        Time.timeScale = 1;
     }
 
     public void ClearStage()
