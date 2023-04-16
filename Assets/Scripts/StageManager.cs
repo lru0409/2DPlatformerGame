@@ -121,6 +121,7 @@ public class StageManager : MonoBehaviour
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로")
             GameManager.instance.UpdateDataToNextStage();
+        Debug.Log("stageIndex : " + GameManager.instance.stageIndex + 1);
         SceneManager.LoadScene("Stage" + (GameManager.instance.stageIndex + 1) + "Scene");
     }
 
@@ -139,6 +140,13 @@ public class StageManager : MonoBehaviour
     }
 
     // ----- Moving Platform -----
+
+    public void MovePlatform()
+    {
+        for (int i = 0; i < platforms.Length; i++) {
+            Move(platforms[i].platform, ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
+        }
+    }
 
     public void Move(GameObject obj, ref float timer, float time, int direction, float speed)
     {

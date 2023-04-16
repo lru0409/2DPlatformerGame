@@ -9,15 +9,16 @@ public class MovingPlatform6 : MonoBehaviour
 
     void Start()
     {
-        platforms = new MovingPlatform[5];
-        platforms[0] = new MovingPlatform(GameObject.Find("MovingPlatform1") ,5, 1, 2);
-
+        platforms = new MovingPlatform[6];
+        platforms[0] = new MovingPlatform(GameObject.Find("MovingPlatform1"), 4.5f, -1, 2.5f);
+        platforms[1] = new MovingPlatform(GameObject.Find("MovingPlatform2"), 2, 1, 2.5f);
+        platforms[2] = new MovingPlatform(GameObject.Find("MovingPlatform3"), 2, -1, 2.5f);
+        platforms[3] = new MovingPlatform(GameObject.Find("MovingPlatform4"), 4, 1, 3f);
         stageManager.platforms = platforms;
     }
 
     void Update()
     {
-        stageManager.Move(platforms[0].platform, ref platforms[0].timer, platforms[0].time, platforms[0].direction, platforms[0].speed);
+        stageManager.MovePlatform();
     }
-
 }
