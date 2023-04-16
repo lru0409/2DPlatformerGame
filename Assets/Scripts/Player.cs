@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public StageManager stageManager;
-    public PlatformManager platformManager;
 
     public AudioClip audioJump;
     public AudioClip audioAttack;
@@ -85,7 +84,12 @@ public class Player : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MovingPlatform") {
-            platformManager.MovePlayer(this, collision.gameObject);
+            MovingPlatform[] platforms = stageManager.platforms;
+            for (int i = 0; i < platforms.Length; i++) {
+                if (platforms[i].platform == collision.gameObject) {
+                    stageManager.Move(gameObject, ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
+                }
+            }
         }
     }
 

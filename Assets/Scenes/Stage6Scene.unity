@@ -2339,7 +2339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 1926780083}
-  platformManager: {fileID: 1359087531}
   audioJump: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   audioAttack: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
   audioDamaged: {fileID: 8300000, guid: 7e9ee6dc04a5d40d1a5dfc4beb9865e7, type: 3}
@@ -2692,9 +2691,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359087528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4cee1483b9bb443b845cee38776c610, type: 3}
+  m_Script: {fileID: 11500000, guid: d06cb36352b864faaa914299d8dcbadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 1926780083}
 --- !u!1 &1413617249
 GameObject:
   m_ObjectHideFlags: 0

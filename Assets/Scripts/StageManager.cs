@@ -23,6 +23,9 @@ public class StageManager : MonoBehaviour
     // PauseUI
     public GameObject PauseUI;
 
+    // Moving Platform
+    public MovingPlatform[] platforms;
+
     void Start()
     {
         SetHp(3);
@@ -135,4 +138,41 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene("StageMapScene");
     }
 
+    // ----- Moving Platform -----
+
+    public void Move(GameObject obj, ref float timer, float time, int direction, float speed)
+    {
+        if (obj.name != "Player")
+            timer += Time.deltaTime;
+        if (timer < time) {
+            if (direction == 1)
+                obj.transform.position = obj.transform.position + (Vector3.right * speed) * Time.deltaTime;
+            else
+                obj.transform.position = obj.transform.position + (Vector3.left * speed) * Time.deltaTime;
+        } else if (timer < time * 2) {
+            if (direction == 1)
+                obj.transform.position = obj.transform.position + (Vector3.left * speed) * Time.deltaTime;
+            else
+                obj.transform.position = obj.transform.position + (Vector3.right * speed) * Time.deltaTime;
+        } else {
+            timer = 0;
+        }
+    }
+}
+
+public struct MovingPlatform
+{
+    public GameObject platform;
+    public float timer;
+    public float time;
+    public int direction;
+    public float speed;
+
+    public MovingPlatform(GameObject platform, float time, int direction, float speed) {
+        this.platform = platform;
+        this.timer = 0;
+        this.time = time;
+        this.direction = direction;
+        this.speed = speed;
+    }
 }

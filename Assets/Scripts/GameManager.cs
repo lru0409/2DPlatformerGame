@@ -30,5 +30,4 @@ public class GameManager : MonoBehaviour
         stageIndex++;
         stageOpened[stageIndex] = true;
     }
-    
 }
