@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public StageManager stageManager;
+    public PlatformManager platformManager;
 
     public AudioClip audioJump;
     public AudioClip audioAttack;
@@ -79,12 +80,20 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(0, 0, 0);
 	}
 
+    // ----- On Moving Platform -----
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform") {
+            platformManager.MovePlayer(this, collision.gameObject);
+        }
+    }
+
     // ----- Interact With Enemy -----
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
+        if (collision.gameObject.tag == "Enemy") {
             if (collision.gameObject.name == "Enemy" && rigid.velocity.y < 0 && rigid.position.y > collision.transform.position.y)
                 OnAttack(collision.transform);
             else
