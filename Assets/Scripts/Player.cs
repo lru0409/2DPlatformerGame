@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MovingPlatform") {
-            MovingPlatform[] platforms = stageManager.platforms;
+            MovingPlatform[] platforms = stageManager.movings;
             for (int i = 0; i < platforms.Length; i++) {
                 if (platforms[i].platform == collision.gameObject) {
                     stageManager.Move(gameObject, "Player", ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);

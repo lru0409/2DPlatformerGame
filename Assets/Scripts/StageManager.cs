@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class StageManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class StageManager : MonoBehaviour
 
     // Platforms
     public MovingPlatform[] movings;
-    public DisappearingPlatform[] disappearings;
+    public FadingPlatform[] fadings;
 
     void Start()
     {
@@ -169,31 +170,36 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public void DisappearPlatform()
+    public void FadePlatform()
     {
-        for (int i = 0; i < disappearings.Length; i++) {
-            Disappear(disappearings[i].platform, ref disappearings[i].timer, disappearings[i].time, disappearings[i].appear);
+        for (int i = 0; i < fadings.Length; i++) {
+            fadings[i].timer += Time.deltaTime;
+            
+            // if (fadings[i].timer < fadings[i].time[0]) {
+            //     if (fadings[i].fade == true)
+            //         Debug.Log("platform unfade");
+            //     else
+            //         Debug.Log("platform fade");
+            // } else if (fadings[i].timer < fadings[i].time[0] + fadings[i].time[1]) {
+            //     if (fadings[i].fade == true)
+            //         Debug.Log("platform fade");
+            //     else
+            //         Debug.Log("platform unfade");
+            // } else {
+            //     fadings[i].timer = 0;
+            // }
         }
     }
 
-    public void Disappear(GameObject obj, ref float timer, float[] time, bool appear)
-    {
-        timer += Time.deltaTime;
+//     public void Fade(bool fade, GameObject platform)
+//     {
+//         if (fade == true) {
 
-        if (timer < time[0]) {
-            if (appear == true)
-                Debug.Log("platform appear");
-            else
-                Debug.Log("platform disappear");
-        } else if (timer < time[0] + time[1]) {
-            if (appear == true)
-                Debug.Log("platform disappear");
-            else
-                Debug.Log("platform appear");
-        } else {
-            timer = 0;
-        }
-    }
+//             platform.transform.GetComponent<
+//         } else {  // Unfade
+
+//         }
+//     }
 }
 
 public struct MovingPlatform
@@ -213,17 +219,27 @@ public struct MovingPlatform
     }
 }
 
-public struct DisappearingPlatform
+public struct FadingPlatform
 {
     public GameObject platform;
     public float timer;
-    public float[] time;
-    public bool appear;
+    public float[] time; // 상태변경시간, 유지시간, 유지시간
+    public bool fade;
 
-    public DisappearingPlatform(GameObject platform, float[] time, bool appear) {
+    public FadingPlatform(GameObject platform, float[] time, bool fade) {
         this.platform = platform;
         this.timer = 0;
         this.time = time;
-        this.appear = appear;
+        this.fade = fade;
+
+        Tilemap tilemap = platform.GetComponent<Tilemap>();
+        TilemapCollider2D collider = platform.GetComponent<TilemapCollider2D>();
+        if (fade == true) {
+            tilemap.color = new Color(1, 1, 1, 1);
+            collider.enabled = true;
+        } else {
+            tilemap.color = new Color(1, 1, 1, 0);
+            collider.enabled = false;
+        }
     }
 }
