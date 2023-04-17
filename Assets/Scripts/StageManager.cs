@@ -57,7 +57,9 @@ public class StageManager : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") {
-            HpDown();
+            if (collision.gameObject.layer == LayerMask.GetMask("Player")) {
+                HpDown();
+            }
             if (hp > 0) {
                 player.Reposition();
             }

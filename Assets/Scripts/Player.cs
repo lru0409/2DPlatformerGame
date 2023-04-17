@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
 
 	public void Reposition()
 	{
+        OffDamaged();
 		spriteRenderer.flipX = false;
 		transform.position = new Vector3(0, 0, 0);
 	}
