@@ -57,7 +57,7 @@ public class StageManager : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") {
-            if (collision.gameObject.layer == LayerMask.GetMask("Player")) {
+            if (collision.gameObject.layer == 6) { // Player
                 HpDown();
             }
             if (hp > 0) {
@@ -123,7 +123,6 @@ public class StageManager : MonoBehaviour
         Text playButtonText = UIEventPlayButton.GetComponentInChildren<Text>();
         if (playButtonText.text == "다음 스테이지로")
             GameManager.instance.UpdateDataToNextStage();
-        Debug.Log("stageIndex : " + GameManager.instance.stageIndex + 1);
         SceneManager.LoadScene("Stage" + (GameManager.instance.stageIndex + 1) + "Scene");
     }
 
@@ -146,13 +145,13 @@ public class StageManager : MonoBehaviour
     public void MovePlatform()
     {
         for (int i = 0; i < platforms.Length; i++) {
-            Move(platforms[i].platform, ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
+            Move(platforms[i].platform, "MovingPlatform", ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
         }
     }
 
-    public void Move(GameObject obj, ref float timer, float time, int direction, float speed)
+    public void Move(GameObject obj, string tag, ref float timer, float time, int direction, float speed)
     {
-        if (obj.name != "Player")
+        if (tag == "MovingPlatform")
             timer += Time.deltaTime;
         if (timer < time) {
             if (direction == 1)

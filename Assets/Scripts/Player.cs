@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
             MovingPlatform[] platforms = stageManager.platforms;
             for (int i = 0; i < platforms.Length; i++) {
                 if (platforms[i].platform == collision.gameObject) {
-                    stageManager.Move(gameObject, ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
+                    stageManager.Move(gameObject, "Player", ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
                 }
             }
         }
