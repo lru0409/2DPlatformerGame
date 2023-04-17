@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform6 : MonoBehaviour
+public class PlatformManager6 : MonoBehaviour
 {
     public StageManager stageManager;
     public MovingPlatform[] platforms;
