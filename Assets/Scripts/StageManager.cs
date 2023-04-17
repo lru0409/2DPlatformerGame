@@ -173,33 +173,29 @@ public class StageManager : MonoBehaviour
     public void FadePlatform()
     {
         for (int i = 0; i < fadings.Length; i++) {
-            fadings[i].timer += Time.deltaTime;
-            
-            // if (fadings[i].timer < fadings[i].time[0]) {
-            //     if (fadings[i].fade == true)
-            //         Debug.Log("platform unfade");
-            //     else
-            //         Debug.Log("platform fade");
-            // } else if (fadings[i].timer < fadings[i].time[0] + fadings[i].time[1]) {
-            //     if (fadings[i].fade == true)
-            //         Debug.Log("platform fade");
-            //     else
-            //         Debug.Log("platform unfade");
-            // } else {
-            //     fadings[i].timer = 0;
-            // }
+            Fade(fadings[i].platform, ref fadings[i].timer, fadings[i].time, fadings[i].fade)
         }
     }
 
-//     public void Fade(bool fade, GameObject platform)
-//     {
-//         if (fade == true) {
+    public void Fade(GameObject obj, ref float timer, float[] time, bool fade)
+    {
+        Tilemap tilemap = obj.GetComponent<Tilemap>();
+        TilemapCollider2D collider = obj.GetComponent<TilemapCollider2D>();
 
-//             platform.transform.GetComponent<
-//         } else {  // Unfade
+        timer += Time.deltaTime;
 
-//         }
-//     }
+        if (fade ==  true && timer < time[0]) {
+            tilemap.color = new Color(1, 1, 1, 1 - timer/time[0]);
+        } else if (fade == false && timer < time[0]) {
+            tilemap.color = new Color(1, 1, 1, timer/time[0]);
+        } else if (fade == true && timer > time[0] + time[1]) {
+            fade = false;
+            timer = 0;
+        } else if (fade == false && timer > time[0] + time[2]) {
+            fade = true;
+            timer = 0;
+        }
+    }
 }
 
 public struct MovingPlatform
@@ -223,7 +219,7 @@ public struct FadingPlatform
 {
     public GameObject platform;
     public float timer;
-    public float[] time; // 상태변경시간, 유지시간, 유지시간
+    public float[] time; // 상태변경시간, fade 유지시간, unfade 유지시간
     public bool fade;
 
     public FadingPlatform(GameObject platform, float[] time, bool fade) {
