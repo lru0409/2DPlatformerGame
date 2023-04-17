@@ -23,8 +23,9 @@ public class StageManager : MonoBehaviour
     // PauseUI
     public GameObject PauseUI;
 
-    // Moving Platform
-    public MovingPlatform[] platforms;
+    // Platforms
+    public MovingPlatform[] movings;
+    public DisappearingPlatform[] disappearings;
 
     void Start()
     {
@@ -140,12 +141,12 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene("StageMapScene");
     }
 
-    // ----- Moving Platform -----
+    // ----- Variable Platform -----
 
     public void MovePlatform()
     {
-        for (int i = 0; i < platforms.Length; i++) {
-            Move(platforms[i].platform, "MovingPlatform", ref platforms[i].timer, platforms[i].time, platforms[i].direction, platforms[i].speed);
+        for (int i = 0; i < movings.Length; i++) {
+            Move(movings[i].platform, "MovingPlatform", ref movings[i].timer, movings[i].time, movings[i].direction, movings[i].speed);
         }
     }
 
@@ -167,6 +168,32 @@ public class StageManager : MonoBehaviour
             timer = 0;
         }
     }
+
+    public void DisappearPlatform()
+    {
+        for (int i = 0; i < disappearings.Length; i++) {
+            Disappear(disappearings[i].platform, ref disappearings[i].timer, disappearings[i].time, disappearings[i].appear);
+        }
+    }
+
+    public void Disappear(GameObject obj, ref float timer, float[] time, bool appear)
+    {
+        timer += Time.deltaTime;
+
+        if (timer < time[0]) {
+            if (appear == true)
+                Debug.Log("platform appear");
+            else
+                Debug.Log("platform disappear");
+        } else if (timer < time[0] + time[1]) {
+            if (appear == true)
+                Debug.Log("platform disappear");
+            else
+                Debug.Log("platform appear");
+        } else {
+            timer = 0;
+        }
+    }
 }
 
 public struct MovingPlatform
@@ -183,5 +210,20 @@ public struct MovingPlatform
         this.time = time;
         this.direction = direction;
         this.speed = speed;
+    }
+}
+
+public struct DisappearingPlatform
+{
+    public GameObject platform;
+    public float timer;
+    public float[] time;
+    public bool appear;
+
+    public DisappearingPlatform(GameObject platform, float[] time, bool appear) {
+        this.platform = platform;
+        this.timer = 0;
+        this.time = time;
+        this.appear = appear;
     }
 }
