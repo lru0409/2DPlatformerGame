@@ -173,20 +173,21 @@ public class StageManager : MonoBehaviour
     public void FadePlatform()
     {
         for (int i = 0; i < fadings.Length; i++) {
-            Fade(fadings[i].platform, ref fadings[i].timer, fadings[i].time, fadings[i].fade)
+            Fade(fadings[i].platform, ref fadings[i].timer, fadings[i].time, ref fadings[i].fade);
         }
     }
 
-    public void Fade(GameObject obj, ref float timer, float[] time, bool fade)
+    public void Fade(GameObject obj, ref float timer, float[] time, ref bool fade)
     {
         Tilemap tilemap = obj.GetComponent<Tilemap>();
         TilemapCollider2D collider = obj.GetComponent<TilemapCollider2D>();
 
         timer += Time.deltaTime;
 
-        if (fade ==  true && timer < time[0]) {
+        if (fade == true && timer <= time[0]) {
             tilemap.color = new Color(1, 1, 1, 1 - timer/time[0]);
-        } else if (fade == false && timer < time[0]) {
+        } else if (fade == false && timer <= time[0]) {
+            collider.enabled = true;
             tilemap.color = new Color(1, 1, 1, timer/time[0]);
         } else if (fade == true && timer > time[0] + time[1]) {
             fade = false;
@@ -194,6 +195,8 @@ public class StageManager : MonoBehaviour
         } else if (fade == false && timer > time[0] + time[2]) {
             fade = true;
             timer = 0;
+        } else if (fade == true) {
+            collider.enabled = false;
         }
     }
 }
