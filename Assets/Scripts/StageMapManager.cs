@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class StageMapManager : MonoBehaviour
 {
 	public Image[] lockedImages;
+    public Image[] starImages;
 
 	void Start()
 	{
