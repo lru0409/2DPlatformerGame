@@ -77,7 +77,11 @@ public class Player : MonoBehaviour
 	{
         OffDamaged();
 		spriteRenderer.flipX = false;
-		transform.position = new Vector3(0, 0, 0);
+        if (GameManager.instance.stageIndex < 6) {
+            transform.position = new Vector3(0, 0, 0);
+        } else {
+            transform.position = new Vector3(0, -0.5450001f, 0);
+        }
 	}
 
     // ----- On Moving Platform -----

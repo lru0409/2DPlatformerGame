@@ -11,12 +11,17 @@ public class PlatformManager7 : MonoBehaviour
 
     void Start()
     {
-        movings = new MovingPlatform[1];
-        movings[0] = new MovingPlatform(GameObject.Find("MovingPlatform1"), 4.5f, -1, 2.5f);
+        movings = new MovingPlatform[4];
+        movings[0] = new MovingPlatform(GameObject.Find("MovingPlatform1"), 2.5f, 1, 3);
+        movings[1] = new MovingPlatform(GameObject.Find("MovingPlatform2"), 2, -1, 3);
+        movings[2] = new MovingPlatform(GameObject.Find("MovingPlatform3"), 3, -1, 3);
         stageManager.movings = movings;
 
-        fadings = new FadingPlatform[1];
-        fadings[0] = new FadingPlatform(GameObject.Find("FadingPlatform1"), new float[] {0.5f, 2, 2}, true);
+        fadings = new FadingPlatform[4];
+        fadings[0] = new FadingPlatform(GameObject.Find("FadingPlatform1"), new float[] {0.4f, 1, 1.5f}, false);
+        fadings[1] = new FadingPlatform(GameObject.Find("FadingPlatform2"), new float[] {0.4f, 1, 1.5f}, true);
+        fadings[2] = new FadingPlatform(GameObject.Find("FadingPlatform3"), new float[] {0.4f, 0.7f, 0.7f}, false);
+        fadings[3] = new FadingPlatform(GameObject.Find("FadingPlatform4"), new float[] {0.4f, 0.7f, 0.7f}, true);
         stageManager.fadings = fadings;
     }
 

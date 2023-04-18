@@ -26,6 +26,7 @@ public class StageMapManager : MonoBehaviour
     {
         if (GameManager.instance.stageOpened[number - 1] == false)
             return ;
+        GameManager.instance.stageIndex = number - 1;
         SceneManager.LoadScene("Stage" + number + "Scene"); 
     }
 
