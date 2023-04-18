@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 66512
+  controlID: 89573
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 66513
+  controlID: 89574
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 66514
+  controlID: 89575
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 54570200
-      m_LastClickedID: 153428
-      m_ExpandedIDs: 8a34fcff4a69fdff6676fdffa27cfdffe87cfdff3a89fdff8aa2fdffc8a2fdff06a3fdff44a3fdfff8a8fdffe25bffff0c77ffff9277ffff4479ffff4679ffff4879ffff5e7cffff16d1fffff4ffffffba5e000022060100ae0801008e0b0100561501007815010020570200b4570200d2570200ee57020000580200125802002e58020038580200
+      m_SelectedIDs: 2eee0200
+      m_LastClickedID: 192046
+      m_ExpandedIDs: b6d9fafff6d9faff46eafaff00f5faff68f5faffc40cfbffda0cfbffea0cfbff000dfbff320dfbfff61cfbffa24bfbff5869fbff9e69fbff4472fbff2678fbff7479fbffda79fbff247afbff787afbffe27afbff9e82fbffbc91fbff3692fbff8a34fcff4a69fdff6676fdffa27cfdffe87cfdff3a89fdff8aa2fdffc8a2fdff06a3fdff44a3fdfff8a8fdffe25bffff0c77ffff9277ffff4479ffff4679ffff4879ffff5e7cffff16d1fffff4ffffffba5e000022060100ae0801008e0b0100561501007815010020570200b4570200d2570200ee57020000580200125802002e580200385802002c8f0200dcda0200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -543,7 +543,7 @@ MonoBehaviour:
       containerId: overlay-toolbar__top
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -561,9 +561,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 334.65915, y: 132.52536, z: -11.03024}
+    m_Target: {x: 35.857708, y: 1.0957747, z: -7.3296084}
     speed: 2
-    m_Value: {x: 334.65915, y: 132.52536, z: -11.03024}
+    m_Value: {x: 35.857708, y: 1.0957747, z: -7.3296084}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -614,9 +614,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 364.13812
+    m_Target: 9.455474
     speed: 2
-    m_Value: 364.13812
+    m_Value: 9.455474
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -742,9 +742,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 5b2a3df561a51444e9e0789c5678d224, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: dae5927252d644f29af13eacbded7d80, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 2293524284856553651, guid: 5b2a3df561a51444e9e0789c5678d224, type: 2}
+  - m_Target: {fileID: -2415432525921166932, guid: dae5927252d644f29af13eacbded7d80, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -826,22 +826,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/StageMap
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/StageMap
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "/Users/lru0409/\u1106\u116E\u11AB\u1109\u1165/Unity/2D-Platformer-Game"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 17.5}
-    m_SelectedIDs: 34660000
-    m_LastClickedID: 26164
-    m_ExpandedIDs: 00000000f65f0000c661000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: ea630000
+    m_LastClickedID: 25578
+    m_ExpandedIDs: 00000000f65f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -894,8 +894,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 54570200
-    m_LastClickedInstanceID: 153428
+    m_SelectedInstanceIDs: 2eee0200
+    m_LastClickedInstanceID: 192046
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000be5d00007c5d0000885d0000
     m_RenameOverlay:

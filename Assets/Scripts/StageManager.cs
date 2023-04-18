@@ -39,9 +39,23 @@ public class StageManager : MonoBehaviour
     {
         Time.timeScale = 0;
         if (GameManager.instance.stageIndex < 11) {
+            SetClearGrade();
             DisplayEventUI("Stage Clear!");
         } else {
             Debug.Log("Clear All Stage");
+        }
+    }
+
+    void SetClearGrade()
+    {
+        if (GameManager.instance.stageGrade[GameManager.instance.stageIndex] >= point)
+            return ;
+        if (point == GameManager.instance.totalPoint[GameManager.instance.stageIndex]) {
+            GameManager.instance.stageGrade[GameManager.instance.stageIndex] = 3;
+        } else if (point > GameManager.instance.totalPoint[GameManager.instance.stageIndex]*0.6) {
+            GameManager.instance.stageGrade[GameManager.instance.stageIndex] = 2;
+        } else {
+            GameManager.instance.stageGrade[GameManager.instance.stageIndex] = 1;
         }
     }
 

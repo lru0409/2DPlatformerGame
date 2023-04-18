@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour
         if (instance == null) {
             instance = this;
             instance.stageIndex = 0;
-            instance.stageOpened = new bool[8] {true, false, false, false, false, false, false, false};
+            instance.stageOpened = new bool[8] {true, false, false, false, false, true, true, true};
             instance.stageGrade = new int[8] {0, 0, 0, 0, 0, 0, 0, 0};
-            instance.totalPoint = new int[8] {13, 18, 31, 29, 44, 70, 85, 75};
+            instance.totalPoint = new int[8] {13, 21, 31, 29, 44, 70, 85, 90};
             DontDestroyOnLoad(this.gameObject);
         } else {
             if (instance != this)
