@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public int stageIndex = 0;
-    public bool[] stageOpened = {true, false, false, false, false, false, false, false};
-    public int[] stageGrade = {0, 0, 0, 0, 0, 0, 0, 0};
+    public bool[] stageOpened;
+    public int[] stageGrade;
 
     public StageMapManager stageMapManager;
 
@@ -30,5 +30,6 @@ public class GameManager : MonoBehaviour
     {
         stageIndex++;
         stageOpened[stageIndex] = true;
+        // stageGrade
     }
 }

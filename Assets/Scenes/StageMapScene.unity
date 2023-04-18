@@ -1584,7 +1584,7 @@ MonoBehaviour:
   - {fileID: 1812548388}
   - {fileID: 2054255244}
   - {fileID: 774994685}
-  starImages:
+  gradeImages:
   - {fileID: 404256953}
   - {fileID: 343509247}
   - {fileID: 921986889}
@@ -1593,6 +1593,10 @@ MonoBehaviour:
   - {fileID: 1419691572}
   - {fileID: 1752465899}
   - {fileID: 448228048}
+  starImages:
+  - {fileID: 21300000, guid: 155a530810cb5478e9a5ab2b4c638d63, type: 3}
+  - {fileID: 21300000, guid: 88eb7b642356040c794c9275b3105162, type: 3}
+  - {fileID: 21300000, guid: bb3a86f23884b4811acda2dfa4c3d543, type: 3}
 --- !u!1 &921986887
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class StageMapManager : MonoBehaviour
 {
 	public Image[] lockedImages;
-    public Image[] starImages;
+    public Image[] gradeImages;
+    public Sprite[] starImages;
 
 	void Start()
 	{
@@ -20,6 +21,19 @@ public class StageMapManager : MonoBehaviour
         {
             if (GameManager.instance.stageOpened[i] == true)
                 Destroy(lockedImages[i]);
+
+            if (GameManager.instance.stageGrade[i] == 0) {
+                gradeImages[i].color = new Color(1, 1, 1, 0);
+            } else {
+                gradeImages[i].color = new Color(1, 1, 1, 1);
+                if (GameManager.instance.stageGrade[i] == 1) {
+                    gradeImages[i].sprite = starImages[0];
+                } else if (GameManager.instance.stageGrade[i] == 2) {
+                    gradeImages[i].sprite = starImages[1];
+                } else {
+                    gradeImages[i].sprite = starImages[2];
+                }
+            }
         }
     }
 
