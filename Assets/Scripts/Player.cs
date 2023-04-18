@@ -79,8 +79,10 @@ public class Player : MonoBehaviour
 		spriteRenderer.flipX = false;
         if (GameManager.instance.stageIndex < 6) {
             transform.position = new Vector3(0, 0, 0);
+            Debug.Log("Repositioning");
         } else {
             transform.position = new Vector3(0, -0.5450001f, 0);
+            Debug.Log("Repositioning");
         }
 	}
 
