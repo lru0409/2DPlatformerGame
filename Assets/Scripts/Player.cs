@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
 
     void OnAttack(Transform enemyTransform)
     {
-		stageManager.point += 100;
+		stageManager.point += 2;
         rigid.AddForce(Vector2.up * 8, ForceMode2D.Impulse);
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
         enemy.OnDamaged();
@@ -171,11 +171,11 @@ public class Player : MonoBehaviour
     void CollectCoin(GameObject coin)
     {
         if (coin.name == "Bronze")
-            stageManager.point += 50;
+            stageManager.point += 1;
         else if (coin.name == "Silver")
-            stageManager.point += 100;
+            stageManager.point += 2;
         else if (coin.name == "Gold")
-            stageManager.point += 200;
+            stageManager.point += 3;
         
         PlaySound("ITEM");
         coin.SetActive(false);

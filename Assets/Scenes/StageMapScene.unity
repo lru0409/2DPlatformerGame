@@ -613,6 +613,7 @@ MonoBehaviour:
   stageIndex: 0
   stageOpened: 0100000000000000
   stageGrade: 0000000000000000000000000000000000000000000000000000000000000000
+  totalPoint: 
   stageMapManager: {fileID: 865429323}
 --- !u!4 &366080758
 Transform:
